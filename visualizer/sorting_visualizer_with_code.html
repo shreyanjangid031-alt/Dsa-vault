@@ -1,0 +1,443 @@
+
+<style>
+*{box-sizing:border-box}
+.root{padding:1rem 0;font-family:var(--font-sans)}
+.algo-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem}
+.abtn{padding:5px 11px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);background:var(--color-background-primary);color:var(--color-text-primary);cursor:pointer;font-size:12px}
+.abtn.on{background:#EEEDFE;border-color:#7F77DD;color:#3C3489;font-weight:500}
+.input-row{display:flex;gap:8px;margin-bottom:1rem;flex-wrap:wrap}
+.arr-in{flex:1;min-width:140px;font-family:var(--font-mono);font-size:12px;padding:5px 9px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);background:var(--color-background-primary);color:var(--color-text-primary)}
+.xbtn{padding:5px 11px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);background:var(--color-background-primary);color:var(--color-text-primary);cursor:pointer;font-size:12px}
+.xbtn:disabled{opacity:.4;cursor:not-allowed}
+.main-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-bottom:1rem}
+.left-col{}
+.array-area{display:flex;align-items:flex-end;gap:4px;height:130px;margin-bottom:8px;padding:0 2px}
+.bar-wrap{display:flex;flex-direction:column;align-items:center;flex:1}
+.bar{width:100%;border-radius:3px 3px 0 0;transition:height .2s,background .2s}
+.blbl{font-size:10px;color:var(--color-text-secondary);margin-top:3px}
+.legend{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.li{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--color-text-secondary)}
+.ld{width:10px;height:10px;border-radius:2px}
+.step-box{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 12px;font-size:12px;color:var(--color-text-primary);min-height:44px;border:0.5px solid var(--color-border-tertiary);line-height:1.6;margin-bottom:8px}
+.step-box code{font-family:var(--font-mono);background:var(--color-background-primary);padding:1px 4px;border-radius:3px;font-size:11px;border:0.5px solid var(--color-border-tertiary)}
+.prog-row{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--color-text-secondary);margin-bottom:8px}
+.pbo{flex:1;height:3px;background:var(--color-background-secondary);border-radius:2px}
+.pbi{height:100%;border-radius:2px;background:#7F77DD;transition:width .2s}
+.ctrl-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
+.spd-row{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--color-text-secondary)}
+.right-col{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden}
+.code-header{padding:8px 12px;background:var(--color-background-secondary);border-bottom:0.5px solid var(--color-border-tertiary);font-size:11px;color:var(--color-text-secondary);font-family:var(--font-mono)}
+.code-body{padding:10px 12px;font-family:var(--font-mono);font-size:11px;line-height:1.7;overflow-x:auto;min-height:320px}
+.code-line{padding:0 4px;border-radius:3px;white-space:pre;color:var(--color-text-primary);display:block}
+.code-line.hl{background:#EEEDFE;color:#3C3489;border-left:2px solid #7F77DD;padding-left:6px}
+</style>
+
+<div class="root">
+<h2 class="sr-only">Sorting algorithm visualizer with live code highlighting for Bubble, Insertion, Selection, Quick Sort and their recursive variants</h2>
+
+<div class="algo-row">
+  <button class="abtn on" onclick="selAlgo('bubble',this)">Bubble Sort</button>
+  <button class="abtn" onclick="selAlgo('insertion',this)">Insertion Sort</button>
+  <button class="abtn" onclick="selAlgo('selection',this)">Selection Sort</button>
+  <button class="abtn" onclick="selAlgo('quick',this)">Quick Sort</button>
+  <button class="abtn" onclick="selAlgo('recBubble',this)">Recursive Bubble</button>
+  <button class="abtn" onclick="selAlgo('recInsertion',this)">Recursive Insertion</button>
+</div>
+
+<div class="input-row">
+  <input class="arr-in" id="arrIn" value="5, 3, 8, 1, 9, 2, 7, 4"/>
+  <button class="xbtn" onclick="resetFromInput()">Set array</button>
+  <button class="xbtn" onclick="doRandom()">Random</button>
+</div>
+
+<div class="main-layout">
+  <div class="left-col">
+    <div class="array-area" id="arrayArea"></div>
+    <div class="legend">
+      <div class="li"><div class="ld" style="background:#AFA9EC"></div>unsorted</div>
+      <div class="li"><div class="ld" style="background:#7F77DD"></div>i / comparing</div>
+      <div class="li"><div class="ld" style="background:#F0997B"></div>j / pivot</div>
+      <div class="li"><div class="ld" style="background:#FAC775"></div>min</div>
+      <div class="li"><div class="ld" style="background:#5DCAA5"></div>sorted</div>
+    </div>
+    <div class="step-box" id="stepBox">Press next step to begin.</div>
+    <div class="prog-row">
+      <span id="stepCount">0 / 0</span>
+      <div class="pbo"><div class="pbi" id="pbi" style="width:0%"></div></div>
+      <span id="passLbl"></span>
+    </div>
+    <div class="ctrl-row">
+      <button class="xbtn" id="bPrev" onclick="prevS()" disabled>← prev</button>
+      <button class="xbtn" id="bNext" onclick="nextS()">next →</button>
+      <button class="xbtn" id="bPlay" onclick="togPlay()">▶ play</button>
+      <button class="xbtn" onclick="resetAll()">↺ reset</button>
+    </div>
+    <div class="spd-row">
+      <span>Speed</span>
+      <input type="range" min="1" max="5" value="3" step="1" id="spd" style="width:90px" oninput="document.getElementById('spdLbl').textContent=this.value+'×';if(playing){stopPlay();startPlay()}"/>
+      <span id="spdLbl">3×</span>
+    </div>
+  </div>
+
+  <div class="right-col">
+    <div class="code-header" id="codeHeader">bubble_sort.cpp</div>
+    <div class="code-body" id="codeBody"></div>
+  </div>
+</div>
+</div>
+
+<script>
+const CODES = {
+bubble:{
+  file:'bubble_sort.cpp',
+  lines:[
+    'void bubbleSort(int arr[], int n) {',
+    '  for (int i = n-1; i >= 1; i--) {',
+    '    int didSwap = 0;',
+    '    for (int j = 0; j < i; j++) {',
+    '      if (arr[j] > arr[j+1]) {',
+    '        swap(arr[j], arr[j+1]);',
+    '        didSwap = 1;',
+    '      }',
+    '    }',
+    '    if (didSwap == 0) break;',
+    '  }',
+    '}'
+  ]
+},
+insertion:{
+  file:'insertion_sort.cpp',
+  lines:[
+    'void insertionSort(int arr[], int n) {',
+    '  for (int i = 0; i < n; i++) {',
+    '    int j = i;',
+    '    while (j > 0 &&',
+    '           arr[j-1] > arr[j]) {',
+    '      swap(arr[j-1], arr[j]);',
+    '      j--;',
+    '    }',
+    '  }',
+    '}'
+  ]
+},
+selection:{
+  file:'selection_sort.cpp',
+  lines:[
+    'void selectionSort(int arr[], int n) {',
+    '  for (int i = 0; i < n-1; i++) {',
+    '    int mini = i;',
+    '    for (int j = i+1; j < n; j++) {',
+    '      if (arr[j] < arr[mini])',
+    '        mini = j;',
+    '    }',
+    '    swap(arr[i], arr[mini]);',
+    '  }',
+    '}'
+  ]
+},
+quick:{
+  file:'quick_sort.cpp',
+  lines:[
+    'int partition(vector<int>& a,',
+    '              int low, int high) {',
+    '  int pivot = a[low];',
+    '  int i = low, j = high;',
+    '  while (i < j) {',
+    '    while (a[i]<=pivot && i<=high-1)',
+    '      i++;',
+    '    while (a[j]>pivot && j>=low+1)',
+    '      j--;',
+    '    if (i < j) swap(a[i], a[j]);',
+    '  }',
+    '  swap(a[low], a[j]);',
+    '  return j;',
+    '}',
+    'void quickSort(vector<int>& a,',
+    '               int low, int high) {',
+    '  if (low < high) {',
+    '    int p = partition(a, low, high);',
+    '    quickSort(a, low, p-1);',
+    '    quickSort(a, p+1, high);',
+    '  }',
+    '}'
+  ]
+},
+recBubble:{
+  file:'rec_bubble_sort.cpp',
+  lines:[
+    'void bubbleSort(int arr[], int n) {',
+    '  if (n == 1) return;',
+    '  int count = 0;',
+    '  for (int i = 0; i < n-1; i++) {',
+    '    if (arr[i] > arr[i+1]) {',
+    '      swap(arr[i], arr[i+1]);',
+    '      count++;',
+    '    }',
+    '  }',
+    '  if (count == 0) return;',
+    '  bubbleSort(arr, n-1);',
+    '}'
+  ]
+},
+recInsertion:{
+  file:'rec_insertion_sort.cpp',
+  lines:[
+    'void insertionSort(int arr[], int n) {',
+    '  if (n <= 1) return;',
+    '  insertionSort(arr, n-1);',
+    '  int last = arr[n-1];',
+    '  int j = n-2;',
+    '  while (j >= 0 && arr[j] > last) {',
+    '    arr[j+1] = arr[j];',
+    '    j--;',
+    '  }',
+    '  arr[j+1] = last;',
+    '}'
+  ]
+}
+};
+
+const C = {u:'#AFA9EC',i:'#7F77DD',j:'#F0997B',s:'#5DCAA5',m:'#FAC775'};
+let arr=[],steps=[],si=0,algo='bubble',playing=false,ptimer=null;
+
+function selAlgo(name,btn){
+  algo=name;
+  document.querySelectorAll('.abtn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  resetAll();
+}
+function doRandom(){
+  arr=Array.from({length:8},()=>Math.floor(Math.random()*18)+2);
+  document.getElementById('arrIn').value=arr.join(', ');
+  resetAll();
+}
+function resetFromInput(){
+  const p=document.getElementById('arrIn').value.split(/[\s,]+/).map(Number).filter(n=>!isNaN(n)&&n>0).slice(0,12);
+  if(p.length<2)return;
+  arr=p;
+  resetAll();
+}
+function resetAll(){
+  const p=document.getElementById('arrIn').value.split(/[\s,]+/).map(Number).filter(n=>!isNaN(n)&&n>0).slice(0,12);
+  arr=p.length>=2?p:[5,3,8,1,9,2,7,4];
+  steps=genSteps([...arr]);
+  si=0;stopPlay();renderCode([]);updateUI();
+}
+function mk(a,cs){return a.map((v,i)=>({v,c:cs[i]||C.u}))}
+function bc(n){return Array(n).fill(C.u)}
+function nextS(){if(si<steps.length-1){si++;updateUI()}}
+function prevS(){if(si>0){si--;updateUI()}}
+function togPlay(){playing?stopPlay():startPlay()}
+function startPlay(){
+  playing=true;document.getElementById('bPlay').textContent='⏸ pause';
+  const sp=parseInt(document.getElementById('spd').value);
+  const dl=[0,750,500,300,180,70][sp];
+  ptimer=setInterval(()=>{if(si>=steps.length-1){stopPlay();return}si++;updateUI();},dl);
+}
+function stopPlay(){playing=false;clearInterval(ptimer);document.getElementById('bPlay').textContent='▶ play'}
+
+function updateUI(){
+  const s=steps[si]||steps[steps.length-1];
+  renderBars(s.bars);
+  document.getElementById('stepBox').innerHTML=s.desc;
+  document.getElementById('stepCount').textContent=`${si} / ${steps.length-1}`;
+  document.getElementById('pbi').style.width=`${Math.round((si/Math.max(steps.length-1,1))*100)}%`;
+  document.getElementById('passLbl').textContent=s.pass?`Pass ${s.pass}`:'';
+  document.getElementById('bPrev').disabled=si===0;
+  document.getElementById('bNext').disabled=si>=steps.length-1;
+  renderCode(s.hl||[]);
+}
+function renderBars(bars){
+  const area=document.getElementById('arrayArea');
+  const mx=Math.max(...bars.map(b=>b.v),1);
+  area.innerHTML=bars.map(b=>{
+    const h=Math.max(Math.round((b.v/mx)*115),12);
+    return`<div class="bar-wrap"><div class="bar" style="height:${h}px;background:${b.c}"></div><div class="blbl">${b.v}</div></div>`;
+  }).join('');
+}
+function renderCode(hls){
+  const cd=CODES[algo];
+  document.getElementById('codeHeader').textContent=cd.file;
+  document.getElementById('codeBody').innerHTML=cd.lines.map((ln,i)=>{
+    const cls=hls.includes(i)?'code-line hl':'code-line';
+    return`<span class="${cls}">${ln.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</span>`;
+  }).join('');
+  if(hls.length){
+    const el=document.getElementById('codeBody').querySelectorAll('.hl')[0];
+    if(el)el.scrollIntoView({block:'nearest'});
+  }
+}
+
+function genSteps(a){
+  if(algo==='bubble')return genBubble(a);
+  if(algo==='insertion')return genIns(a);
+  if(algo==='selection')return genSel(a);
+  if(algo==='quick')return genQuick(a);
+  if(algo==='recBubble')return genRB(a);
+  if(algo==='recInsertion')return genRI(a);
+  return[];
+}
+
+function genBubble(a){
+  const st=[],n=a.length,s=[...a],sorted=new Set();
+  st.push({bars:mk(s,bc(n)),desc:'<strong>Bubble Sort</strong> — outer loop shrinks by 1 each pass.',hl:[0,1]});
+  for(let i=n-1;i>=1;i--){
+    let did=false;
+    st.push({bars:mk(s,bc(n).map((c,x)=>sorted.has(x)?C.s:c)),desc:`<code>i=${i}</code>: new pass. Setting <code>didSwap=0</code>`,hl:[2],pass:n-i});
+    for(let j=0;j<i;j++){
+      const c=bc(n).map((_,x)=>sorted.has(x)?C.s:C.u);c[j]=C.i;c[j+1]=C.j;
+      st.push({bars:mk(s,c),desc:`Compare <code>arr[${j}]=${s[j]}</code> vs <code>arr[${j+1}]=${s[j+1]}</code>`,hl:[3,4],pass:n-i});
+      if(s[j]>s[j+1]){
+        [s[j],s[j+1]]=[s[j+1],s[j]];did=true;
+        const c2=bc(n).map((_,x)=>sorted.has(x)?C.s:C.u);c2[j]=C.j;c2[j+1]=C.i;
+        st.push({bars:mk(s,c2),desc:`Swapped → <code>arr[${j}]=${s[j]}</code>, <code>arr[${j+1}]=${s[j+1]}</code>. <code>didSwap=1</code>`,hl:[5,6],pass:n-i});
+      }
+    }
+    sorted.add(i);
+    if(!did){
+      const cf=bc(n).map((_,x)=>C.s);
+      st.push({bars:mk(s,cf),desc:`<code>didSwap==0</code> → no swaps this pass. Array already sorted! Break early.`,hl:[9]});
+      break;
+    }
+  }
+  st.push({bars:mk(s,s.map(()=>C.s)),desc:`Done! Sorted: <code>[${s.join(', ')}]</code>`,hl:[11]});
+  return st;
+}
+
+function genIns(a){
+  const st=[],n=a.length,s=[...a];
+  st.push({bars:mk(s,bc(n)),desc:'<strong>Insertion Sort</strong> — pick each element, walk left swapping into position.',hl:[0,1]});
+  for(let i=0;i<n;i++){
+    const c=bc(n).map((_,x)=>x<i?C.s:C.u);c[i]=C.i;
+    st.push({bars:mk(s,c),desc:`Outer: <code>i=${i}</code>, element <code>${s[i]}</code>. Set <code>j=i</code>`,hl:[1,2]});
+    let j=i;
+    while(j>0&&s[j-1]>s[j]){
+      const c2=bc(n).map((_,x)=>x<i?C.s:C.u);c2[j-1]=C.j;c2[j]=C.i;
+      st.push({bars:mk(s,c2),desc:`<code>arr[${j-1}]=${s[j-1]} > arr[${j}]=${s[j]}</code> → swap`,hl:[3,4,5]});
+      [s[j-1],s[j]]=[s[j],s[j-1]];j--;
+      const c3=bc(n).map((_,x)=>x<=i?C.s:C.u);c3[j]=C.i;
+      st.push({bars:mk(s,c3),desc:`Swapped. <code>j--</code> → <code>j=${j}</code>`,hl:[6]});
+    }
+  }
+  st.push({bars:mk(s,s.map(()=>C.s)),desc:`Done! Sorted: <code>[${s.join(', ')}]</code>`,hl:[9]});
+  return st;
+}
+
+function genSel(a){
+  const st=[],n=a.length,s=[...a];
+  st.push({bars:mk(s,bc(n)),desc:'<strong>Selection Sort</strong> — find minimum in unsorted part, swap to front.',hl:[0,1]});
+  for(let i=0;i<n-1;i++){
+    let mini=i;
+    const c0=bc(n).map((_,x)=>x<i?C.s:C.u);c0[i]=C.m;
+    st.push({bars:mk(s,c0),desc:`<code>i=${i}</code>: assume <code>mini=${i}</code> (val <code>${s[i]}</code>)`,hl:[1,2]});
+    for(let j=i+1;j<n;j++){
+      const c=bc(n).map((_,x)=>x<i?C.s:C.u);c[mini]=C.m;c[j]=C.j;
+      st.push({bars:mk(s,c),desc:`Compare <code>arr[${j}]=${s[j]}</code> with min <code>arr[${mini}]=${s[mini]}</code>`,hl:[3,4]});
+      if(s[j]<s[mini]){
+        mini=j;
+        const c2=bc(n).map((_,x)=>x<i?C.s:C.u);c2[mini]=C.m;
+        st.push({bars:mk(s,c2),desc:`New min! <code>mini=${mini}</code> (val <code>${s[mini]}</code>)`,hl:[5]});
+      }
+    }
+    if(mini!==i){
+      const cs=bc(n).map((_,x)=>x<i?C.s:C.u);cs[i]=C.i;cs[mini]=C.m;
+      st.push({bars:mk(s,cs),desc:`Swap <code>arr[${i}]=${s[i]}</code> ↔ <code>arr[${mini}]=${s[mini]}</code>`,hl:[7]});
+      [s[i],s[mini]]=[s[mini],s[i]];
+    }
+    const ca=bc(n).map((_,x)=>x<=i?C.s:C.u);
+    st.push({bars:mk(s,ca),desc:`<code>${s[i]}</code> placed at index ${i}`,hl:[7]});
+  }
+  st.push({bars:mk(s,s.map(()=>C.s)),desc:`Done! Sorted: <code>[${s.join(', ')}]</code>`,hl:[9]});
+  return st;
+}
+
+function genQuick(a){
+  const st=[],s=[...a],sorted=new Set();
+  st.push({bars:mk(s,bc(s.length)),desc:'<strong>Quick Sort</strong> — pick pivot, partition, recurse on halves.',hl:[14,15,16]});
+  function part(lo,hi){
+    const pv=s[lo];
+    const cp=bc(s.length).map((_,x)=>sorted.has(x)?C.s:C.u);cp[lo]=C.j;
+    st.push({bars:mk(s,cp),desc:`partition([${lo}..${hi}]): <code>pivot=arr[${lo}]=${pv}</code>`,hl:[2,3]});
+    let i=lo,j=hi;
+    while(i<j){
+      while(i<=hi-1&&s[i]<=pv)i++;
+      while(j>=lo+1&&s[j]>pv)j--;
+      if(i<j){
+        const c=bc(s.length).map((_,x)=>sorted.has(x)?C.s:C.u);c[lo]=C.j;c[i]=C.i;c[j]=C.m;
+        st.push({bars:mk(s,c),desc:`<code>arr[${i}]=${s[i]}</code>>pivot, <code>arr[${j}]=${s[j]}</code><pivot → swap`,hl:[9]});
+        [s[i],s[j]]=[s[j],s[i]];
+        const c2=bc(s.length).map((_,x)=>sorted.has(x)?C.s:C.u);c2[lo]=C.j;c2[i]=C.m;c2[j]=C.i;
+        st.push({bars:mk(s,c2),desc:`Swapped: <code>arr[${i}]=${s[i]}</code>, <code>arr[${j}]=${s[j]}</code>`,hl:[9]});
+      }
+    }
+    [s[lo],s[j]]=[s[j],s[lo]];sorted.add(j);
+    const cf=bc(s.length).map((_,x)=>sorted.has(x)?C.s:C.u);
+    st.push({bars:mk(s,cf),desc:`Pivot <code>${pv}</code> at index ${j} (correct pos). Recurse left+right.`,hl:[11,12,18,19]});
+    return j;
+  }
+  function qs(lo,hi){
+    if(lo>=hi){if(lo===hi)sorted.add(lo);return;}
+    const p=part(lo,hi);qs(lo,p-1);qs(p+1,hi);
+  }
+  qs(0,s.length-1);
+  st.push({bars:mk(s,s.map(()=>C.s)),desc:`Done! Sorted: <code>[${s.join(', ')}]</code>`,hl:[21]});
+  return st;
+}
+
+function genRB(a){
+  const st=[],n=a.length,s=[...a],sorted=new Set();
+  st.push({bars:mk(s,bc(n)),desc:'<strong>Recursive Bubble Sort</strong> — one pass per call, recurse on n-1.',hl:[0]});
+  function rb(sz){
+    if(sz===1)return;
+    st.push({bars:mk(s,bc(n).map((_,x)=>sorted.has(x)?C.s:C.u)),desc:`<code>bubbleSort(arr, ${sz})</code>: base case? No. Set <code>count=0</code>`,hl:[1,2]});
+    let cnt=0;
+    for(let j=0;j<sz-1;j++){
+      const c=bc(n).map((_,x)=>sorted.has(x)?C.s:C.u);c[j]=C.i;c[j+1]=C.j;
+      st.push({bars:mk(s,c),desc:`Compare <code>arr[${j}]=${s[j]}</code> vs <code>arr[${j+1}]=${s[j+1]}</code>`,hl:[3,4],pass:n-sz+1});
+      if(s[j]>s[j+1]){
+        [s[j],s[j+1]]=[s[j+1],s[j]];cnt++;
+        const c2=bc(n).map((_,x)=>sorted.has(x)?C.s:C.u);c2[j]=C.j;c2[j+1]=C.i;
+        st.push({bars:mk(s,c2),desc:`Swapped. <code>count=${cnt}</code>`,hl:[5,6],pass:n-sz+1});
+      }
+    }
+    sorted.add(sz-1);
+    if(cnt===0){
+      for(let k=0;k<sz;k++)sorted.add(k);
+      st.push({bars:mk(s,s.map(()=>C.s)),desc:`<code>count==0</code> → early return! Already sorted.`,hl:[9]});
+      return;
+    }
+    st.push({bars:mk(s,bc(n).map((_,x)=>sorted.has(x)?C.s:C.u)),desc:`Pass done. Recursing: <code>bubbleSort(arr, ${sz-1})</code>`,hl:[10],pass:n-sz+1});
+    rb(sz-1);
+  }
+  rb(n);
+  st.push({bars:mk(s,s.map(()=>C.s)),desc:`Done! Sorted: <code>[${s.join(', ')}]</code>`,hl:[11]});
+  return st;
+}
+
+function genRI(a){
+  const st=[],n=a.length,s=[...a];
+  st.push({bars:mk(s,bc(n)),desc:'<strong>Recursive Insertion Sort</strong> — recurse to n=1, insert on way back up.',hl:[0]});
+  function ri(sz){
+    if(sz<=1)return;
+    st.push({bars:mk(s,bc(n).map((_,x)=>x<sz?C.u:C.s)),desc:`<code>insertionSort(arr, ${sz})</code>: recurse on <code>n-1=${sz-1}</code> first`,hl:[1,2]});
+    ri(sz-1);
+    const last=s[sz-1];
+    const c0=bc(n).map((_,x)=>x<sz-1?C.s:C.u);c0[sz-1]=C.j;
+    st.push({bars:mk(s,c0),desc:`Back (n=${sz}): insert <code>last=${last}</code> into sorted <code>[${s.slice(0,sz-1).join(', ')}]</code>`,hl:[3,4]});
+    let j=sz-2;
+    while(j>=0&&s[j]>last){
+      const c=bc(n).map((_,x)=>x<sz?C.s:C.u);c[j]=C.i;c[j+1]=C.j;
+      st.push({bars:mk(s,c),desc:`<code>arr[${j}]=${s[j]} > last=${last}</code> → shift right`,hl:[5,6,7]});
+      s[j+1]=s[j];j--;
+    }
+    s[j+1]=last;
+    const cf=bc(n).map((_,x)=>x<sz?C.s:C.u);
+    st.push({bars:mk(s,cf),desc:`Placed <code>${last}</code> at index ${j+1}. Sorted: <code>[${s.slice(0,sz).join(', ')}]</code>`,hl:[9]});
+  }
+  ri(n);
+  st.push({bars:mk(s,s.map(()=>C.s)),desc:`Done! Sorted: <code>[${s.join(', ')}]</code>`,hl:[10]});
+  return st;
+}
+
+resetAll();
+</script>
