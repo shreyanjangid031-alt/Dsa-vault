@@ -1,2 +1,4 @@
 ﻿automation/node_modules/
 automation/vault-index.json
+
+automation/.env
