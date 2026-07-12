@@ -1,0 +1,454 @@
+[
+  {
+    "filename": "00_Master_Index.md",
+    "tags": [
+      "dsa",
+      "striver",
+      "a2z",
+      "index",
+      "master"
+    ],
+    "topic": "DSA Vault — Master Index",
+    "status": "complete",
+    "wikilinks": [
+      "Sorting",
+      "STL",
+      "ARRAY easy part 1",
+      "ARRAY easy part 2",
+      "ARRAY easy part 3",
+      "Arrays Medium",
+      "Majority_Element",
+      "Sort_0_1_2",
+      "Two_Sum_Complete",
+      "Max_Subarray_Sum",
+      "Longest_Consecutive_Sequence",
+      "Subarray_Sum_Equals_K",
+      "INDEX_New_Problems",
+      "Best_Time_Buy_Sell_Stock",
+      "Rearrange_Array_by_Sign",
+      "Next_Permutation",
+      "Leaders_in_Array",
+      "Matrix Problems",
+      "Set_Matrix_Zeroes",
+      "Rotate_Matrix_90",
+      "Spiral_Matrix"
+    ]
+  },
+  {
+    "filename": "ARRAY easy part 1.md",
+    "tags": [
+      "dsa",
+      "arrays",
+      "striver",
+      "a2z",
+      "easy",
+      "two-pointer"
+    ],
+    "topic": "Arrays Easy Problems — Part 1",
+    "status": "completed",
+    "wikilinks": [
+      "00_Master_Index",
+      "ARRAY easy part 2",
+      "ARRAY easy part 3",
+      "Arrays Medium",
+      "Sorting"
+    ]
+  },
+  {
+    "filename": "ARRAY easy part 2.md",
+    "tags": [
+      "dsa",
+      "arrays",
+      "striver",
+      "a2z",
+      "easy",
+      "two-pointer",
+      "rotation"
+    ],
+    "topic": "Arrays Easy Problems — Part 2",
+    "status": "completed",
+    "wikilinks": [
+      "ARRAY easy part 1",
+      "00_Master_Index",
+      "ARRAY easy part 3",
+      "STL",
+      "Arrays Medium"
+    ]
+  },
+  {
+    "filename": "ARRAY easy part 3.md",
+    "tags": [
+      "dsa",
+      "arrays",
+      "striver",
+      "a2z",
+      "easy",
+      "hashing",
+      "two-pointer",
+      "xor"
+    ],
+    "topic": "Arrays Easy Problems — Part 3",
+    "status": "completed",
+    "wikilinks": [
+      "00_Master_Index",
+      "ARRAY easy part 1",
+      "ARRAY easy part 2",
+      "Arrays Medium",
+      "Sorting"
+    ]
+  },
+  {
+    "filename": "Arrays Medium.md",
+    "tags": [
+      "arrays",
+      "algorithms",
+      "intuition",
+      "leetcode",
+      "striver",
+      "a2z"
+    ],
+    "topic": "Advanced (Medium) Array Problems — Index",
+    "status": "completed",
+    "wikilinks": [
+      "00_Master_Index",
+      "INDEX_New_Problems",
+      "Majority_Element",
+      "Sort_0_1_2",
+      "Two_Sum_Complete",
+      "Max_Subarray_Sum",
+      "Sorting",
+      "ARRAY easy part 1",
+      "ARRAY easy part 2",
+      "ARRAY easy part 3",
+      "STL"
+    ]
+  },
+  {
+    "filename": "Best_Time_Buy_Sell_Stock.md",
+    "tags": [
+      "greedy",
+      "tracking",
+      "arrays",
+      "stocks",
+      "interview"
+    ],
+    "topic": "Best Time to Buy and Sell Stock",
+    "status": "completed",
+    "wikilinks": [
+      "INDEX_New_Problems",
+      "Leaders_in_Array",
+      "Max_Subarray_Sum",
+      "00_Master_Index"
+    ]
+  },
+  {
+    "filename": "INDEX_New_Problems.md",
+    "tags": [
+      "arrays",
+      "algorithms",
+      "intuition",
+      "leetcode",
+      "striver"
+    ],
+    "topic": "New Problems — Intuition & Memorization Guide",
+    "status": "completed",
+    "wikilinks": [
+      "00_Master_Index",
+      "Arrays Medium",
+      "Best_Time_Buy_Sell_Stock",
+      "Rearrange_Array_by_Sign",
+      "Next_Permutation",
+      "Leaders_in_Array",
+      "Sorting",
+      "ARRAY easy part 1",
+      "STL"
+    ]
+  },
+  {
+    "filename": "Leaders_in_Array.md",
+    "tags": [
+      "leaders",
+      "backward",
+      "tracking",
+      "arrays",
+      "interview"
+    ],
+    "topic": "Leaders in an Array",
+    "status": "completed",
+    "wikilinks": [
+      "INDEX_New_Problems",
+      "Best_Time_Buy_Sell_Stock",
+      "Max_Subarray_Sum",
+      "00_Master_Index"
+    ]
+  },
+  {
+    "filename": "Longest_Consecutive_Sequence.md",
+    "tags": [
+      "hashing",
+      "sorting",
+      "sets",
+      "arrays",
+      "interview"
+    ],
+    "topic": "Longest Consecutive Sequence",
+    "status": "completed",
+    "wikilinks": [
+      "Arrays Medium",
+      "Two_Sum_Complete",
+      "Majority_Element",
+      "ARRAY easy part 1",
+      "STL",
+      "00_Master_Index"
+    ]
+  },
+  {
+    "filename": "Majority_Element.md",
+    "tags": [
+      "mooresvoting",
+      "greedy",
+      "voting",
+      "arrays",
+      "interview"
+    ],
+    "topic": "Majority Element — Moore's Voting Algorithm",
+    "status": "completed",
+    "wikilinks": [
+      "Arrays Medium",
+      "ARRAY easy part 3",
+      "Sort_0_1_2",
+      "Two_Sum_Complete",
+      "00_Master_Index"
+    ]
+  },
+  {
+    "filename": "Matrix Problems.md",
+    "tags": [
+      "matrix",
+      "arrays",
+      "algorithms",
+      "intuition",
+      "striver"
+    ],
+    "topic": "Matrix Problems — Index",
+    "status": "completed",
+    "wikilinks": [
+      "00_Master_Index",
+      "Arrays Medium",
+      "INDEX_New_Problems",
+      "Set_Matrix_Zeroes",
+      "Rotate_Matrix_90",
+      "Spiral_Matrix",
+      "STL",
+      "ARRAY easy part 1",
+      "ARRAY easy part 2",
+      "ARRAY easy part 3"
+    ]
+  },
+  {
+    "filename": "Max_Subarray_Sum.md",
+    "tags": [
+      "kadane",
+      "dynamicprogramming",
+      "greedy",
+      "maxsubarray",
+      "arrays",
+      "interview"
+    ],
+    "topic": "Maximum Subarray Sum — Kadane's Algorithm",
+    "status": "completed",
+    "wikilinks": [
+      "Arrays Medium",
+      "Majority_Element",
+      "ARRAY easy part 3",
+      "00_Master_Index"
+    ]
+  },
+  {
+    "filename": "Next_Permutation.md",
+    "tags": [
+      "permutation",
+      "lexicographic",
+      "threepointer",
+      "interview"
+    ],
+    "topic": "Next Permutation",
+    "status": "completed",
+    "wikilinks": [
+      "INDEX_New_Problems",
+      "Best_Time_Buy_Sell_Stock",
+      "Rearrange_Array_by_Sign",
+      "00_Master_Index"
+    ]
+  },
+  {
+    "filename": "Rearrange_Array_by_Sign.md",
+    "tags": [
+      "arrays",
+      "patterns",
+      "indexing",
+      "interview"
+    ],
+    "topic": "Rearrange Array Elements by Sign",
+    "status": "completed",
+    "wikilinks": [
+      "INDEX_New_Problems",
+      "Best_Time_Buy_Sell_Stock",
+      "Next_Permutation",
+      "Sort_0_1_2",
+      "00_Master_Index"
+    ]
+  },
+  {
+    "filename": "Rotate_Matrix_90.md",
+    "tags": [
+      "matrix",
+      "transpose",
+      "inplace",
+      "arrays",
+      "interview"
+    ],
+    "topic": "Rotate Matrix by 90 Degrees",
+    "status": "completed",
+    "wikilinks": [
+      "Matrix Problems",
+      "Spiral_Matrix",
+      "Set_Matrix_Zeroes",
+      "ARRAY easy part 2",
+      "00_Master_Index"
+    ]
+  },
+  {
+    "filename": "Set_Matrix_Zeroes.md",
+    "tags": [
+      "matrix",
+      "hashing",
+      "inplace",
+      "arrays",
+      "interview"
+    ],
+    "topic": "Set Matrix Zeroes",
+    "status": "completed",
+    "wikilinks": [
+      "Matrix Problems",
+      "Rotate_Matrix_90",
+      "Spiral_Matrix",
+      "Two_Sum_Complete",
+      "00_Master_Index"
+    ]
+  },
+  {
+    "filename": "Sorting.md",
+    "tags": [
+      "sorting",
+      "algorithms",
+      "striver",
+      "a2z"
+    ],
+    "topic": "Sorting Algorithms Complete Guide",
+    "status": "completed",
+    "wikilinks": [
+      "STL",
+      "00_Master_Index",
+      "ARRAY easy part 1"
+    ]
+  },
+  {
+    "filename": "Sort_0_1_2.md",
+    "tags": [
+      "dutchflag",
+      "threepointers",
+      "inplace",
+      "arrays",
+      "interview"
+    ],
+    "topic": "Sort Array of 0s, 1s, and 2s — Dutch National Flag",
+    "status": "completed",
+    "wikilinks": [
+      "Arrays Medium",
+      "Majority_Element",
+      "Two_Sum_Complete",
+      "Max_Subarray_Sum",
+      "Rearrange_Array_by_Sign",
+      "00_Master_Index"
+    ]
+  },
+  {
+    "filename": "Spiral_Matrix.md",
+    "tags": [
+      "matrix",
+      "traversal",
+      "boundaries",
+      "arrays",
+      "interview"
+    ],
+    "topic": "Spiral Matrix Traversal",
+    "status": "completed",
+    "wikilinks": [
+      "Matrix Problems",
+      "Rotate_Matrix_90",
+      "Set_Matrix_Zeroes",
+      "00_Master_Index"
+    ]
+  },
+  {
+    "filename": "STL.md",
+    "tags": [
+      "stl",
+      "cpp",
+      "containers",
+      "iterators",
+      "algorithms"
+    ],
+    "topic": "C++ STL (Standard Template Library)",
+    "status": "completed",
+    "wikilinks": [
+      "ARRAY easy part 1",
+      "Arrays Medium",
+      "INDEX_New_Problems",
+      "00_Master_Index",
+      "Sorting",
+      "ARRAY easy part 2",
+      "ARRAY easy part 3"
+    ]
+  },
+  {
+    "filename": "Subarray_Sum_Equals_K.md",
+    "tags": [
+      "prefixsum",
+      "hashing",
+      "arrays",
+      "interview"
+    ],
+    "topic": "Count Subarrays with Sum Equal to K",
+    "status": "completed",
+    "wikilinks": [
+      "Arrays Medium",
+      "ARRAY easy part 3",
+      "Two_Sum_Complete",
+      "Max_Subarray_Sum",
+      "STL",
+      "00_Master_Index"
+    ]
+  },
+  {
+    "filename": "Two_Sum_Complete.md",
+    "tags": [
+      "twosum",
+      "hashing",
+      "twopointers",
+      "complement",
+      "arrays",
+      "interview"
+    ],
+    "topic": "Two Sum — Complete Guide",
+    "status": "completed",
+    "wikilinks": [
+      "Arrays Medium",
+      "Majority_Element",
+      "Sort_0_1_2",
+      "Max_Subarray_Sum",
+      "00_Master_Index"
+    ]
+  }
+]
