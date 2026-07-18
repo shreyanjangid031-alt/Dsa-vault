@@ -2,7 +2,7 @@
 tags: [dsa, striver, a2z, index, master]
 topic: DSA Vault — Master Index
 status: auto-generated
-date: 2026-07-16
+date: 2026-07-18
 ---
 
 # DSA Vault — Master Index (Auto-Generated)
@@ -19,6 +19,7 @@ date: 2026-07-16
 - [[Majority_Element]] — Majority Element — Moore's Voting Algorithm
 - [[Matrix Problems]] — Matrix Problems — Index
 - [[Max_Subarray_Sum]] — Maximum Subarray Sum — Kadane's Algorithm
+- [[Next Greater Element (Monotonic Stack)]] — Next Greater Element (Monotonic Stack)
 - [[Next_Permutation]] — Next Permutation
 - [[Pascal's Triangle – Computation & Generation]] — Pascal's Triangle – Computation & Generation
 - [[Rearrange_Array_by_Sign]] — Rearrange Array Elements by Sign
