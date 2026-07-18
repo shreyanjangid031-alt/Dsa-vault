@@ -457,5 +457,17 @@
     "topic": "Pascal's Triangle – Computation & Generation",
     "status": "completed",
     "wikilinks": []
+  },
+  {
+    "filename": "Next Greater Element (Monotonic Stack).md",
+    "tags": [],
+    "topic": "Next Greater Element (Monotonic Stack)",
+    "status": "completed",
+    "wikilinks": [
+      "STL",
+      "ARRAY easy part 1",
+      "Arrays Medium",
+      "Leaders_in_Array"
+    ]
   }
 ]
