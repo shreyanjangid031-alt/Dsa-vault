@@ -459,15 +459,15 @@
     "wikilinks": []
   },
   {
-    "filename": "Next Greater Element (Monotonic Stack).md",
+    "filename": "Trapping Rain Water – Two‑Pointer O(1) Space.md",
     "tags": [],
-    "topic": "Next Greater Element (Monotonic Stack)",
+    "topic": "Trapping Rain Water – Two‑Pointer O(1) Space",
     "status": "completed",
     "wikilinks": [
-      "STL",
       "ARRAY easy part 1",
-      "Arrays Medium",
-      "Leaders_in_Array"
+      "Leaders_in_Array",
+      "Best_Time_Buy_Sell_Stock",
+      "STL"
     ]
   }
 ]
