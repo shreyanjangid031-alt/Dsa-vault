@@ -19,7 +19,6 @@ date: 2026-07-18
 - [[Majority_Element]] — Majority Element — Moore's Voting Algorithm
 - [[Matrix Problems]] — Matrix Problems — Index
 - [[Max_Subarray_Sum]] — Maximum Subarray Sum — Kadane's Algorithm
-- [[Next Greater Element (Monotonic Stack)]] — Next Greater Element (Monotonic Stack)
 - [[Next_Permutation]] — Next Permutation
 - [[Pascal's Triangle – Computation & Generation]] — Pascal's Triangle – Computation & Generation
 - [[Rearrange_Array_by_Sign]] — Rearrange Array Elements by Sign
@@ -30,4 +29,5 @@ date: 2026-07-18
 - [[Sorting]] — Sorting Algorithms Complete Guide
 - [[Spiral_Matrix]] — Spiral Matrix Traversal
 - [[Subarray_Sum_Equals_K]] — Count Subarrays with Sum Equal to K
+- [[Trapping Rain Water – Two‑Pointer O(1) Space]] — Trapping Rain Water – Two‑Pointer O(1) Space
 - [[Two_Sum_Complete]] — Two Sum — Complete Guide
